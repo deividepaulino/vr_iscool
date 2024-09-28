@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vr_iscool/core/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
+import 'package:vr_iscool/core/widgets/course_card_widget/course_card_widget.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -12,6 +14,7 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const CustomBottomMenu(),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -101,6 +104,20 @@ class _IndexPageState extends State<IndexPage> {
               'Cursos populares',
               style: Theme.of(context).textTheme.displayMedium,
             ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  5,
+                  (index) => const CourseCardWidget(),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 100,
+            color: Colors.red,
           ),
         ],
       ),

@@ -6,10 +6,10 @@ class ThemeBase {
       // useMaterial3: false,
       primarySwatch: Colors.deepOrange,
       primaryColorLight: Colors.deepOrange.shade300,
-      primaryColorDark: Colors.deepOrange.shade900,
+      primaryColorDark: Colors.grey.shade800,
       primaryColor: Colors.deepOrange.shade300,
       fontFamily: 'Montserrat',
-      scaffoldBackgroundColor: Colors.grey.shade50,
+      // scaffoldBackgroundColor: Colors.grey.shade50,
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: Colors.orange,
         secondary: Colors.orange,
@@ -31,10 +31,10 @@ class ThemeBase {
           fontWeight: FontWeight.bold,
           color: Colors.black87,
         ),
-        titleSmall: const TextStyle(
+        titleSmall: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255, 40, 190, 255),
+          color: Colors.orange.shade600,
         ),
         headlineMedium: const TextStyle(
           color: Colors.white,
