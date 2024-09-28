@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vr_iscool/core/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
 import 'package:vr_iscool/core/widgets/course_card_widget/course_card_widget.dart';
+import 'package:vr_iscool/modules/index_module/presenter/widgets/teachers_widget.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -53,7 +54,7 @@ class _IndexPageState extends State<IndexPage> {
                       height: 130,
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +100,7 @@ class _IndexPageState extends State<IndexPage> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
             child: Text(
               'Cursos populares',
               style: Theme.of(context).textTheme.displayMedium,
@@ -115,10 +116,14 @@ class _IndexPageState extends State<IndexPage> {
               ),
             ),
           ),
-          Container(
-            height: 100,
-            color: Colors.red,
+          Padding(
+            padding: const EdgeInsets.only(left: 24.0, top: 8),
+            child: Text(
+              'Professores disponiveis',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
+          const TeachersWidget(),
         ],
       ),
     );

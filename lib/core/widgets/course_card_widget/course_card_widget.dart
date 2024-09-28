@@ -16,7 +16,10 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black,
+              image: const DecorationImage(
+                image: AssetImage('assets/logotipo/semfoto.png'),
+                fit: BoxFit.cover,
+              ),
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
