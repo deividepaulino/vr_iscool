@@ -7,13 +7,13 @@ class ThemeBase {
       primarySwatch: Colors.deepOrange,
       primaryColorLight: Colors.deepOrange.shade300,
       primaryColorDark: Colors.deepOrange.shade900,
-      primaryColor: Colors.deepOrange.shade400,
+      primaryColor: Colors.deepOrange.shade300,
       fontFamily: 'Montserrat',
       scaffoldBackgroundColor: Colors.grey.shade50,
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: Colors.orange,
         secondary: Colors.orange,
-        tertiary: Colors.pink,
+        tertiary: Colors.green,
         surface: Colors.grey.shade50,
       ),
       textTheme: TextTheme(
@@ -28,8 +28,8 @@ class ThemeBase {
         ),
         displayMedium: const TextStyle(
           fontSize: 14,
-          // fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255, 40, 190, 255),
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
         ),
         titleSmall: const TextStyle(
           fontSize: 14,
