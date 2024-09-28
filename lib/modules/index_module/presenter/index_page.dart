@@ -6,6 +6,7 @@ import 'package:vr_iscool/core/shared/presenter/pages/generic_fail_page.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_loading_page.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/course_card_widget/course_card_widget.dart';
+import 'package:vr_iscool/modules/index_module/domain/entities/top_coruse_entity.dart';
 import 'package:vr_iscool/modules/index_module/presenter/atoms/index_atoms.dart';
 import 'package:vr_iscool/modules/index_module/presenter/states/index_states.dart';
 import 'package:vr_iscool/modules/index_module/presenter/widgets/teachers_widget.dart';
@@ -21,28 +22,40 @@ class _IndexPageState extends State<IndexPage> {
   final indexAtoms = Modular.get<IndexAtoms>();
 
   @override
+  void initState() {
+    indexAtoms.getTopCourseList();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = context.select(() => indexAtoms.state.value);
 
     return Scaffold(
-        bottomNavigationBar: const CustomBottomMenu(),
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                icon: Icon(Icons.notifications,
-                    color: Theme.of(context).primaryColor),
-                onPressed: () {}),
-          ],
-          title: const Text('Olá Deivide!'),
-        ),
-        body: switch (state) {
-          IndexLoadingState _ => const GenericLoadingPage(),
-          IndexSuccessState _ => _buildSuccess(),
-          IndexErrorState state => GenericFailPage(msg: state.message),
-        });
+      bottomNavigationBar: const CustomBottomMenu(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Icon(Icons.notifications,
+                  color: Theme.of(context).primaryColor),
+              onPressed: () {}),
+        ],
+        title: const Text('Olá Deivide!'),
+      ),
+      body: switch (state) {
+        IndexLoadingState _ => const GenericLoadingPage(),
+        IndexSuccessState state => _buildSuccess(state.topCourses),
+        IndexErrorState state => GenericFailPage(
+            msg: state.message,
+            onTryAgain: () {
+              indexAtoms.getTopCourseList();
+            },
+          ),
+      },
+    );
   }
 
-  _buildSuccess() {
+  _buildSuccess(List<TopCourseEntity> topCourses) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -124,16 +137,21 @@ class _IndexPageState extends State<IndexPage> {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: List.generate(
-                5,
-                (index) => const CourseCardWidget(),
+        if (topCourses.isEmpty)
+          const Center(child: Text('Nenhum curso disponível')),
+        if (topCourses.isNotEmpty)
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  topCourses.length,
+                  (index) => CourseCardWidget(
+                    topCourseEntity: topCourses[index],
+                  ),
+                ),
               ),
             ),
           ),
-        ),
         Padding(
           padding: const EdgeInsets.only(left: 24.0, top: 8),
           child: Text(

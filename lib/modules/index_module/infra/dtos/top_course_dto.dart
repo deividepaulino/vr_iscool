@@ -6,7 +6,7 @@ extension TopCourseDto on TopCourseEntity {
 
     return TopCourseEntity(
       descricao: json['descricao'] ?? '',
-      totalAlunos: json['total_alunos'] ?? -1,
+      totalAlunos: json['totalAlunos'] ?? -1,
     );
   }
 
@@ -15,7 +15,7 @@ extension TopCourseDto on TopCourseEntity {
 
     return TopCourseEntity(
       descricao: json['descricao'] ?? '',
-      totalAlunos: json['total_alunos'] ?? -1,
+      totalAlunos: json['totalAlunos'] ?? -1,
     );
   }
 

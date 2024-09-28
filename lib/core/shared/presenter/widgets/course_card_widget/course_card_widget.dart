@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vr_iscool/modules/index_module/domain/entities/top_coruse_entity.dart';
 
 class CourseCardWidget extends StatefulWidget {
-  const CourseCardWidget({super.key});
+  final TopCourseEntity topCourseEntity;
+  const CourseCardWidget({super.key, required this.topCourseEntity});
 
   @override
   State<CourseCardWidget> createState() => _CourseCardWidgetState();
@@ -38,10 +40,10 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Nome do curso',
+              widget.topCourseEntity.descricao,
               style: Theme.of(context).textTheme.titleSmall,
             ),
-            Text('Descrição do curso'),
+            const Text('Descrição do curso'),
           ],
         ),
         const Spacer(),
@@ -50,7 +52,7 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
           child: Column(
             children: [
               Text(
-                '10',
+                widget.topCourseEntity.totalAlunos.toString(),
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

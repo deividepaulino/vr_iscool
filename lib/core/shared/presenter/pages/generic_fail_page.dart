@@ -4,7 +4,9 @@ import 'package:vr_iscool/core/shared/presenter/widgets/buttons/elevated_buttom/
 
 class GenericFailPage extends StatefulWidget {
   final String msg;
-  const GenericFailPage({super.key, required this.msg});
+  final void Function() onTryAgain;
+  const GenericFailPage(
+      {super.key, required this.msg, required this.onTryAgain});
 
   @override
   State<GenericFailPage> createState() => _GenericFailPageState();
@@ -28,7 +30,7 @@ class _GenericFailPageState extends State<GenericFailPage> {
           VRButtonElevated.icon(
             icon: Icons.refresh,
             context: context,
-            onPressed: () {},
+            onPressed: widget.onTryAgain,
             title: 'Tentar novamente',
           ),
         ],

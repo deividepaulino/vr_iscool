@@ -16,7 +16,7 @@ class TopCourseGetListDataSourceRemoteImpl
   @override
   TopCourseGetListResult call(List<TopCourseEntity> entities) async {
     try {
-      final response = await dio.get('/topCourses.json');
+      final response = await dio.get('/curso-alunos/top-cursos/');
 
       if (response.statusCode == 200) {
         final topCoursesData = response.data as List<dynamic>;
