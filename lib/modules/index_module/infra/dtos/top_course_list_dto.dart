@@ -10,7 +10,7 @@ extension TopCourseListDto on List<TopCourseEntity> {
         result.add(
           TopCourseEntity(
             descricao: item['descricao'] ?? '',
-            totalAlunos: item['total_alunos'] ?? -1,
+            totalAlunos: item['totalAlunos'] ?? -1,
           ),
         );
       }
