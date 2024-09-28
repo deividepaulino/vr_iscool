@@ -6,7 +6,10 @@ class LoginModule extends Module {
   List<Module> get imports => [];
 
   @override
-  void routes(r) {
-    r.child('/', child: (context) => const QuickStartPage());
-  }
+  List<ModularRoute> get routes => [
+        ChildRoute(
+          '/',
+          child: (_, args) => const QuickStartPage(),
+        ),
+      ];
 }

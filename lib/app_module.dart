@@ -1,18 +1,22 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:vr_iscool/core/shared/utils/custom_dio.dart';
 import 'package:vr_iscool/modules/index_module/index_module.dart';
 import 'package:vr_iscool/modules/login_module/login_module.dart';
 
 class AppModule extends Module {
   @override
-  void binds(i) {}
+  List<Module> get imports => [];
 
   @override
-  void routes(r) {
-    r.module(
-      '/',
-      module: LoginModule(),
-      transition: TransitionType.rightToLeft,
-    );
-    r.module('/index/', module: IndexModule());
-  }
+  List<Bind> get binds => [
+        Bind(
+          (i) => CustomDio().dio,
+        ),
+      ];
+
+  @override
+  List<ModularRoute> get routes => [
+        ModuleRoute('/', module: LoginModule()),
+        ModuleRoute('/index/', module: IndexModule()),
+      ];
 }

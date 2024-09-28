@@ -11,7 +11,8 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TCG League',
       theme: ThemeBase.themeData,
-      routerConfig: Modular.routerConfig,
+      routeInformationParser: Modular.routeInformationParser,
+      routerDelegate: Modular.routerDelegate,
     ); //added by extension
   }
 }
