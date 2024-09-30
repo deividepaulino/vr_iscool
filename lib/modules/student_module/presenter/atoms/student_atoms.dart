@@ -14,6 +14,8 @@ class StudentAtoms {
 
   final postCurseAction = Atom<StudentEntity>(StudentEntity.empty());
 
+  final patchStudentAction = Atom<StudentEntity>(StudentEntity.empty());
+
   dispose() {
     getStudentList.dispose();
   }

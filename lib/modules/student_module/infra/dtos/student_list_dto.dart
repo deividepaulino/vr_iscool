@@ -11,6 +11,7 @@ extension StudentListDto on List<StudentEntity> {
           StudentEntity(
             id: item['codigo'] ?? -1,
             name: item['nome'] ?? '',
+            course: item['curso'] ?? '',
           ),
         );
       }

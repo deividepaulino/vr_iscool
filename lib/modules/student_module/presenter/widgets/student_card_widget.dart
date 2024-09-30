@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/modals/confirm_modal/confirm_modal_widget.dart';
 import 'package:vr_iscool/modules/student_module/domain/entities/student_entity.dart';
 import 'package:vr_iscool/modules/student_module/presenter/atoms/student_atoms.dart';
+import 'package:vr_iscool/modules/student_module/presenter/widgets/student_switch_modal_widget.dart';
 
 class StudentCardWidget extends StatefulWidget {
   final StudentEntity student;
@@ -23,7 +24,15 @@ class _StudentCardWidgetState extends State<StudentCardWidget> {
         children: [
           SlidableAction(
             borderRadius: const BorderRadius.only(),
-            onPressed: (BuildContext context) {},
+            onPressed: (BuildContext context) {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return StudentSwitchModalWidget(
+                      student: widget.student,
+                    );
+                  });
+            },
             backgroundColor: Colors.blue.shade900,
             foregroundColor: Theme.of(context).colorScheme.surface,
             icon: Icons.sync,
@@ -96,7 +105,7 @@ class _StudentCardWidgetState extends State<StudentCardWidget> {
                   'E-mail: deividepcsvlog@gmail.com: ',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
-                Text('VR Soft',
+                Text('Curso: ${widget.student.course}',
                     style: Theme.of(context).textTheme.displayMedium!.copyWith(
                           color: Theme.of(context).primaryColor,
                         )),

@@ -14,6 +14,7 @@ class CourseEntity {
     return CourseEntity(
       descricao: '',
       ementa: '',
+      id: -1,
       totalAlunos: -1,
     );
   }
