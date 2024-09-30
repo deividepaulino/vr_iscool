@@ -23,6 +23,7 @@ class _GenericFailPageState extends State<GenericFailPage> {
             Lottie.asset('assets/animations/fail_ice_cream.json', height: 300),
             Text(
               widget.msg,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Theme.of(context).colorScheme.error,
                   ),

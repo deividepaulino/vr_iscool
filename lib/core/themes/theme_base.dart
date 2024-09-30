@@ -24,7 +24,7 @@ class ThemeBase {
         displayLarge: const TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255, 40, 190, 255),
+          color: Colors.black87,
         ),
         displayMedium: const TextStyle(
           fontSize: 14,
@@ -51,7 +51,7 @@ class ThemeBase {
           fontSize: 12,
         ),
         bodyLarge: const TextStyle(
-          color: Color.fromARGB(255, 80, 187, 245),
+          color: Colors.black87,
           fontSize: 16,
         ),
         // bodySmall theme used to fix black color
