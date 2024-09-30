@@ -5,7 +5,7 @@ extension CourseDto on CourseEntity {
     if (json == null) return CourseEntity.empty();
 
     return CourseEntity(
-      id: json['id'] ?? -1,
+      id: json['codigo'] ?? -1,
       descricao: json['descricao'] ?? '',
       ementa: '',
       totalAlunos: json['totalAlunos'] ?? -1,
@@ -16,7 +16,7 @@ extension CourseDto on CourseEntity {
     if (json == null) return CourseEntity.empty();
 
     return CourseEntity(
-      id: json['id'] ?? -1,
+      id: json['codigo'] ?? -1,
       descricao: json['descricao'] ?? '',
       ementa: '',
       totalAlunos: json['totalAlunos'] ?? -1,
@@ -25,7 +25,6 @@ extension CourseDto on CourseEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'descricao': descricao,
       'ementa': ementa,
     };

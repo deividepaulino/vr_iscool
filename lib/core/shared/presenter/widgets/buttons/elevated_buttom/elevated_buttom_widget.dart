@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Classe VRButtonElevated estendendo ElevatedButton
 class VRButtonElevated extends ElevatedButton {
   VRButtonElevated({
     super.key,
@@ -13,14 +12,13 @@ class VRButtonElevated extends ElevatedButton {
   }) : super(
           child: Text(
             title,
-            style: const TextStyle(color: Colors.white), // Texto sempre branco
+            style: const TextStyle(color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(
             backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
             elevation: elevation ?? 2.0,
             shape: RoundedRectangleBorder(
-              borderRadius:
-                  borderRadius ?? BorderRadius.circular(30.0), // Raio padrão
+              borderRadius: borderRadius ?? BorderRadius.circular(30.0),
             ),
           ),
         );
@@ -53,8 +51,7 @@ class VRButtonElevated extends ElevatedButton {
             backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
             elevation: elevation ?? 2.0,
             shape: RoundedRectangleBorder(
-              borderRadius:
-                  borderRadius ?? BorderRadius.circular(30.0), // Raio padrão
+              borderRadius: borderRadius ?? BorderRadius.circular(30.0),
             ),
           ),
         );
@@ -67,18 +64,19 @@ class VRButtonElevated extends ElevatedButton {
     Color? backgroundColor,
     double? elevation,
     BorderRadiusGeometry? borderRadius,
+    Size? size,
   }) : super(
           child: Text(
             title,
-            style: const TextStyle(color: Colors.white), // Texto sempre branco
+            style: const TextStyle(color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor ?? Colors.green, // Cor verde
+            backgroundColor: backgroundColor ?? Colors.green,
             elevation: elevation ?? 2.0,
             shape: RoundedRectangleBorder(
-              borderRadius:
-                  borderRadius ?? BorderRadius.circular(30.0), // Raio padrão
+              borderRadius: borderRadius ?? BorderRadius.circular(30.0),
             ),
+            minimumSize: size ?? const Size(150, 45),
           ),
         );
 
@@ -91,6 +89,7 @@ class VRButtonElevated extends ElevatedButton {
     Color? backgroundColor,
     double? elevation,
     BorderRadiusGeometry? borderRadius,
+    Size? size,
   }) : super(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -107,12 +106,12 @@ class VRButtonElevated extends ElevatedButton {
             ],
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor ?? Colors.green, // Cor verde
+            backgroundColor: backgroundColor ?? Colors.green,
             elevation: elevation ?? 2.0,
             shape: RoundedRectangleBorder(
-              borderRadius:
-                  borderRadius ?? BorderRadius.circular(30.0), // Raio padrão
+              borderRadius: borderRadius ?? BorderRadius.circular(30.0),
             ),
+            minimumSize: size ?? const Size(150, 50),
           ),
         );
 }

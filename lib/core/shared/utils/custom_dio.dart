@@ -24,5 +24,9 @@ class CustomDio {
         request: true,
       ),
     );
+
+    dio.options.validateStatus = (status) {
+      return status != null && status >= 200 && status < 500;
+    };
   }
 }

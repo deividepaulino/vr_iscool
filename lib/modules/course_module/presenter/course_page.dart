@@ -9,6 +9,7 @@ import 'package:vr_iscool/core/shared/presenter/widgets/search_bar/search_bar_wi
 import 'package:vr_iscool/modules/course_module/domain/entities/course_entity.dart';
 import 'package:vr_iscool/modules/course_module/presenter/atoms/course_atoms.dart';
 import 'package:vr_iscool/modules/course_module/presenter/states/course_states.dart';
+import 'package:vr_iscool/modules/course_module/presenter/widgets/add_course_form_widget.dart';
 
 class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
@@ -31,6 +32,19 @@ class _CoursePageState extends State<CoursePage> {
   Widget build(BuildContext context) {
     final state = context.select(() => courseAtoms.state.value);
 
+    rxObserver(() {
+      if (courseAtoms.showSnackBar.value) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.tertiary,
+            content: Text(courseAtoms.snackText.value),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+        courseAtoms.showSnackBar.setValue(false);
+      }
+    });
+
     return Scaffold(
       bottomNavigationBar: const CustomBottomMenu(),
       appBar: AppBar(
@@ -50,7 +64,16 @@ class _CoursePageState extends State<CoursePage> {
                 ),
               ],
             ),
-            onPressed: () {},
+            onPressed: () {
+              //show modal botom sheet
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return const AddCourseFormWidget();
+                },
+              );
+            },
           ),
         ],
         title: Text(

@@ -9,7 +9,7 @@ extension CourseListDto on List<CourseEntity> {
       for (var item in json) {
         result.add(
           CourseEntity(
-            id: item['id'] ?? -1,
+            id: item['codigo'] ?? -1,
             descricao: item['descricao'] ?? '',
             ementa: '',
             totalAlunos: item['totalAlunos'] ?? -1,
