@@ -22,23 +22,42 @@ class _StudentCardWidgetState extends State<StudentCardWidget> {
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
         children: [
-          SlidableAction(
-            borderRadius: const BorderRadius.only(),
-            onPressed: (BuildContext context) {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return StudentSwitchModalWidget(
-                      student: widget.student,
-                    );
-                  });
-            },
-            backgroundColor: Colors.blue.shade900,
-            foregroundColor: Theme.of(context).colorScheme.surface,
-            icon: Icons.sync,
-            label: 'Curso',
-            flex: 5,
-          ),
+          if (widget.student.course != 'Não matriculado')
+            SlidableAction(
+              borderRadius: const BorderRadius.only(),
+              onPressed: (BuildContext context) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return StudentSwitchModalWidget(
+                        student: widget.student,
+                      );
+                    });
+              },
+              backgroundColor: Colors.blue.shade900,
+              foregroundColor: Theme.of(context).colorScheme.surface,
+              icon: Icons.sync,
+              label: 'Curso',
+              flex: 5,
+            ),
+          if (widget.student.course == 'Não matriculado')
+            SlidableAction(
+              borderRadius: const BorderRadius.only(),
+              onPressed: (BuildContext context) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return StudentSwitchModalWidget(
+                        student: widget.student,
+                      );
+                    });
+              },
+              backgroundColor: Theme.of(context).colorScheme.tertiary,
+              foregroundColor: Theme.of(context).colorScheme.surface,
+              icon: Icons.add,
+              label: 'Matricula',
+              flex: 5,
+            ),
           SlidableAction(
             borderRadius: const BorderRadius.only(),
             onPressed: (BuildContext context) {
