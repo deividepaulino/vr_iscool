@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/modals/confirm_modal/confirm_modal_widget.dart';
 import 'package:vr_iscool/modules/registration_module/domain/entities/registration_entity.dart';
 import 'package:vr_iscool/modules/registration_module/presenter/atoms/registration_atoms.dart';
-import 'package:vr_iscool/modules/registration_module/presenter/widgets/registration_switch_modal_widget.dart';
 
 class RegistrationCardWidget extends StatefulWidget {
   final RegistrationEntity registration;
@@ -31,10 +29,9 @@ class _RegistrationCardWidgetState extends State<RegistrationCardWidget> {
                   child: Row(
                     children: [
                       Text(
-                        'Código: ${widget.registration.name}',
+                        'Código: ${widget.registration.id ?? -1} ',
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
-                      const SizedBox(width: 8),
                       SizedBox(
                         height: 20,
                         width: 60,
@@ -60,18 +57,35 @@ class _RegistrationCardWidgetState extends State<RegistrationCardWidget> {
                         ),
                       ),
                       const Spacer(),
-                      IconButton(
-                        icon: const Icon(Icons.edit),
+                      TextButton(
                         onPressed: () {
-                          showModalBottomSheet(
+                          showDialog(
                             context: context,
-                            builder: (context) {
-                              return RegistrationSwitchModalWidget(
-                                registration: widget.registration,
-                              );
-                            },
+                            builder: (context) => ConfirmModalWidget(
+                              leftAction: () {
+                                registrationAtoms.deleteRegistrationAction
+                                    .setValue(widget.registration);
+                              },
+                              rightAction: () {},
+                              title: 'Deseja remover a matrícula?',
+                              content: 'O aluno será removido do curso.',
+                            ),
                           );
                         },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.cancel,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'Remover',
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -15,7 +15,7 @@ class RegistrationGetListDataSourceRemoteImpl
   @override
   RegistrationGetListResult call(List<RegistrationEntity> entities) async {
     try {
-      final response = await dio.get('/alunos/');
+      final response = await dio.get('/curso-alunos/');
 
       if (response.statusCode == 200) {
         final topRegistrationsData = response.data as List<dynamic>;

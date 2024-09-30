@@ -40,7 +40,7 @@ class RegistrationReducer extends Reducer {
     registrationAtoms.state.value = RegistrationLoadingState();
     res.fold(
       (success) async {
-        registrationAtoms.snackText.value = 'Aluno deletado com sucesso';
+        registrationAtoms.snackText.value = 'Matricula cancelada com sucesso';
         registrationAtoms.showSnackBar.setValue(true);
         registrationAtoms.getRegistrationList();
       },

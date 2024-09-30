@@ -71,28 +71,31 @@ class _AddCourseFormWidgetState extends State<AddCourseFormWidget> {
                 validator: (v) => v!.isEmpty ? 'Campo obrigatório' : null,
               ),
               const SizedBox(height: 16),
-              VRButtonElevated.success(
-                size: const Size(double.maxFinite, 45),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    courseAtoms.postCurseAction.setValue(
-                      CourseEntity(
-                        descricao: descriptionController.text,
-                        ementa: ementaController.text,
-                        totalAlunos: 0,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: VRButtonElevated.success(
+                  size: const Size(double.maxFinite, 45),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      courseAtoms.postCurseAction.setValue(
+                        CourseEntity(
+                          descricao: descriptionController.text,
+                          ementa: ementaController.text,
+                          totalAlunos: 0,
+                        ),
+                      );
+                      Modular.to.pop();
+                      return;
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Preencha todos os campos'),
                       ),
                     );
-                    Modular.to.pop();
-                    return;
-                  }
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Preencha todos os campos'),
-                    ),
-                  );
-                },
-                title: 'Finalizar Cadastro',
-                context: context,
+                  },
+                  title: 'Finalizar Cadastro',
+                  context: context,
+                ),
               ),
             ],
           ),

@@ -10,8 +10,8 @@ extension RegistrationListDto on List<RegistrationEntity> {
         result.add(
           RegistrationEntity(
             id: item['codigo'] ?? -1,
-            name: item['nome'] ?? '',
-            course: item['curso'] ?? '',
+            name: item['nomeAluno'] ?? '',
+            course: item['nomeCurso'] ?? '',
           ),
         );
       }

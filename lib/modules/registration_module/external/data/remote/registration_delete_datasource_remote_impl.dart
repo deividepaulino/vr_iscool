@@ -15,7 +15,7 @@ class RegistrationDeleteDataSourceRemoteImpl
   @override
   RegistrationEntityResult call(RegistrationEntity entities) async {
     try {
-      final response = await dio.delete('/alunos/${entities.id}');
+      final response = await dio.delete('/curso-alunos/${entities.id}');
 
       if (response.statusCode == 200) {
         return Result.success(

@@ -6,8 +6,8 @@ extension RegistrationDto on RegistrationEntity {
 
     return RegistrationEntity(
       id: json['codigo'] ?? -1,
-      name: json['nome'] ?? '',
-      course: json['curso'] ?? '',
+      name: json['nomeAluno'] ?? '',
+      course: json['nomeCurso'] ?? '',
     );
   }
 
@@ -16,20 +16,14 @@ extension RegistrationDto on RegistrationEntity {
 
     return RegistrationEntity(
       id: json['codigo'] ?? -1,
-      name: json['nome'] ?? '',
-      course: json['curso'] ?? '',
+      name: json['nomeAluno'] ?? '',
+      course: json['nomeCurso'] ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'nome': name,
-    };
-  }
-
-  Map<String, dynamic> updateCourse() {
-    return {
-      'novoCurso': courseId ?? -1,
     };
   }
 }
