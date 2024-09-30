@@ -55,12 +55,19 @@ class _AddStudentFormWidgetState extends State<AddStudentFormWidget> {
               ),
               const SizedBox(height: 16),
               VRTextFormField(
-                hintText: 'Nome do aluno',
-                title: 'Nome do aluno',
-                context: context,
-                controller: descriptionController,
-                validator: (v) => v!.isEmpty ? 'Campo obrigatório' : null,
-              ),
+                  hintText: 'Nome do aluno',
+                  title: 'Nome do aluno',
+                  context: context,
+                  controller: descriptionController,
+                  validator: (v) {
+                    if (v!.isEmpty) {
+                      return 'Campo obrigatório';
+                    }
+
+                    if (v.length > 50) {
+                      return 'Nome muito longo';
+                    }
+                  }),
               const SizedBox(height: 16),
               const SizedBox(height: 16),
               Padding(

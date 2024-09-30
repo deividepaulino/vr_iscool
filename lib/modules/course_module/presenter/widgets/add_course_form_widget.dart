@@ -71,7 +71,15 @@ class _AddCourseFormWidgetState extends State<AddCourseFormWidget> {
                 title: 'Nome do curso',
                 context: context,
                 controller: descriptionController,
-                validator: (v) => v!.isEmpty ? 'Campo obrigatório' : null,
+                validator: (v) {
+                  if (v!.isEmpty) {
+                    return 'Campo obrigatório';
+                  }
+
+                  if (v.length > 50) {
+                    return 'Nome muito longo';
+                  }
+                },
               ),
               const SizedBox(height: 16),
               VRTextFormField(
