@@ -23,7 +23,9 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   void initState() {
-    indexAtoms.getTopCourseList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      indexAtoms.getTopCourseList();
+    });
     super.initState();
   }
 
