@@ -25,7 +25,7 @@ class _VrFilterWidgetState extends State<VrFilterWidget> {
               child: const Icon(Icons.search, color: Colors.white),
             ),
             filled: true,
-            fillColor: Theme.of(context).primaryColor,
+            fillColor: Colors.transparent,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
