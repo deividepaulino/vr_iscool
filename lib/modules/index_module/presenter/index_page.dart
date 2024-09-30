@@ -6,7 +6,7 @@ import 'package:vr_iscool/core/shared/presenter/pages/generic_fail_page.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_loading_page.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/course_card_widget/course_card_widget.dart';
-import 'package:vr_iscool/modules/index_module/domain/entities/top_coruse_entity.dart';
+import 'package:vr_iscool/modules/course_module/domain/entities/course_entity.dart';
 import 'package:vr_iscool/modules/index_module/presenter/atoms/index_atoms.dart';
 import 'package:vr_iscool/modules/index_module/presenter/states/index_states.dart';
 import 'package:vr_iscool/modules/index_module/presenter/widgets/teachers_widget.dart';
@@ -55,7 +55,7 @@ class _IndexPageState extends State<IndexPage> {
     );
   }
 
-  _buildSuccess(List<TopCourseEntity> topCourses) {
+  _buildSuccess(List<CourseEntity> topCourses) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

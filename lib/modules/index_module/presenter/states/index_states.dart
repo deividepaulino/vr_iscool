@@ -1,11 +1,11 @@
-import 'package:vr_iscool/modules/index_module/domain/entities/top_coruse_entity.dart';
+import 'package:vr_iscool/modules/course_module/domain/entities/course_entity.dart';
 
 sealed class IndexStates {}
 
 class IndexLoadingState extends IndexStates {}
 
 class IndexSuccessState extends IndexStates {
-  final List<TopCourseEntity> topCourses;
+  final List<CourseEntity> topCourses;
 
   IndexSuccessState(this.topCourses);
 }

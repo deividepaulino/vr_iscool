@@ -7,7 +7,7 @@ class ThemeBase {
       primarySwatch: Colors.deepOrange,
       primaryColorLight: Colors.deepOrange.shade300,
       primaryColorDark: Colors.grey.shade800,
-      primaryColor: Colors.deepOrange.shade300,
+      primaryColor: Colors.deepOrange.shade400,
       fontFamily: 'Montserrat',
       // scaffoldBackgroundColor: Colors.grey.shade50,
       colorScheme: ColorScheme.fromSwatch().copyWith(

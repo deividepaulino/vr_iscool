@@ -1,4 +1,7 @@
+import 'package:asp/asp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:vr_iscool/core/shared/presenter/atoms/core_atoms.dart';
 
 class CustomBottomMenu extends StatefulWidget {
   const CustomBottomMenu({super.key});
@@ -8,10 +11,10 @@ class CustomBottomMenu extends StatefulWidget {
 }
 
 class _CustomBottomMenuState extends State<CustomBottomMenu> {
-  int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    context.select(() => navBarIndex.value);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
@@ -21,15 +24,22 @@ class _CustomBottomMenuState extends State<CustomBottomMenu> {
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          currentIndex: currentIndex,
+          currentIndex: navBarIndex.value,
           elevation: 10,
           selectedItemColor: Theme.of(context).primaryColor,
           unselectedItemColor:
               Theme.of(context).primaryColorDark.withOpacity(0.5),
           onTap: (i) {
-            setState(() {
-              currentIndex = i;
-            });
+            if (i == navBarIndex.value) {
+              return;
+            }
+            navBarIndex.setValue(i);
+
+            if (i == 1) {
+              Modular.to.pushNamed('/course/');
+              return;
+            }
+            Modular.to.pushNamed('/index/');
           },
           items: [
             BottomNavigationBarItem(
@@ -64,7 +74,7 @@ class _CustomBottomMenuState extends State<CustomBottomMenu> {
       children: [
         Icon(icon),
         const SizedBox(height: 4),
-        if (currentIndex == index)
+        if (navBarIndex.value == index)
           Container(
             width: 8,
             height: 8,
