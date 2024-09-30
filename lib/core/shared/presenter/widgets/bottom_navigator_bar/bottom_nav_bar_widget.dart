@@ -43,6 +43,10 @@ class _CustomBottomMenuState extends State<CustomBottomMenu> {
               Modular.to.pushNamed('/student/');
               return;
             }
+            if (i == 3) {
+              Modular.to.pushNamed('/registration/');
+              return;
+            }
             Modular.to.pushNamed('/index/');
           },
           items: [
