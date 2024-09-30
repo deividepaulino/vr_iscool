@@ -140,7 +140,15 @@ class _IndexPageState extends State<IndexPage> {
           ),
         ),
         if (topCourses.isEmpty)
-          const Center(child: Text('Nenhum curso disponível')),
+          Center(
+            child: Column(
+              children: [
+                Lottie.asset('assets/animations/empty.json', height: 200),
+                const Text('Nenhum curso encontrado!'),
+                const SizedBox(height: 32),
+              ],
+            ),
+          ),
         if (topCourses.isNotEmpty)
           Expanded(
             child: SingleChildScrollView(

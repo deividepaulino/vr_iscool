@@ -15,6 +15,7 @@ class IndexReducer extends Reducer {
   }
 
   void _getTopCourseList() async {
+    indexAtoms.state.value = IndexLoadingState();
     courseAtoms.getTopCourseList.call();
 
     while (courseAtoms.state.value is CourseLoadingState) {

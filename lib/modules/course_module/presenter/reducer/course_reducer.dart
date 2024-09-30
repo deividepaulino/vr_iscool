@@ -26,9 +26,12 @@ class CourseReducer extends Reducer {
   void _getCourseList() async {
     final res = await courseGetListDataSource([]);
 
+    courseAtoms.state.value = CourseLoadingState();
+
     res.fold(
       (success) async {
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(milliseconds: 800));
+
         courseAtoms.state.value = CourseSuccessState(success);
       },
       (error) => {

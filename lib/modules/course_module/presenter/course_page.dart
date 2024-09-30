@@ -1,6 +1,7 @@
 import 'package:asp/asp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_fail_page.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_loading_page.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
@@ -123,7 +124,15 @@ class _CoursePageState extends State<CoursePage> {
           ),
         ),
         if (courses.isEmpty)
-          const Center(child: Text('Nenhum curso disponível')),
+          Center(
+            child: Column(
+              children: [
+                Lottie.asset('assets/animations/empty.json', height: 200),
+                const Text('Nenhum curso encontrado!'),
+                const SizedBox(height: 32),
+              ],
+            ),
+          ),
         if (courses.isNotEmpty)
           Expanded(
             child: SingleChildScrollView(

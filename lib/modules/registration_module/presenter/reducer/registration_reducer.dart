@@ -22,9 +22,12 @@ class RegistrationReducer extends Reducer {
   void _getRegistrationList() async {
     final res = await registrationGetListDataSource([]);
 
+    registrationAtoms.state.value = RegistrationLoadingState();
+
     res.fold(
       (success) async {
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(milliseconds: 800));
+
         registrationAtoms.state.value = RegistrationSuccessState(success);
       },
       (error) => {

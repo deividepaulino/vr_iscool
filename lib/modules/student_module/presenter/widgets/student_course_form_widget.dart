@@ -36,7 +36,7 @@ class _AddStudentFormWidgetState extends State<AddStudentFormWidget> {
               Row(
                 children: [
                   Text(
-                    'Cadastro de curso',
+                    'Cadastro de aluno',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -55,8 +55,8 @@ class _AddStudentFormWidgetState extends State<AddStudentFormWidget> {
               ),
               const SizedBox(height: 16),
               VRTextFormField(
-                hintText: 'Nome do curso',
-                title: 'Nome do curso',
+                hintText: 'Nome do aluno',
+                title: 'Nome do aluno',
                 context: context,
                 controller: descriptionController,
                 validator: (v) => v!.isEmpty ? 'Campo obrigatório' : null,

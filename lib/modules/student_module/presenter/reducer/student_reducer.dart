@@ -26,9 +26,11 @@ class StudentReducer extends Reducer {
   void _getStudentList() async {
     final res = await studentGetListDataSource([]);
 
+    studentAtoms.state.value = StudentLoadingState();
+
     res.fold(
       (success) async {
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(milliseconds: 800));
         studentAtoms.state.value = StudentSuccessState(success);
       },
       (error) => {
