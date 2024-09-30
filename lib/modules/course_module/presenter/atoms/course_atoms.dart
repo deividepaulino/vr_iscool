@@ -14,6 +14,8 @@ class CourseAtoms {
 
   final postCurseAction = Atom<CourseEntity>(CourseEntity.empty());
 
+  final putCurseAction = Atom<CourseEntity>(CourseEntity.empty());
+
   final getTopCourseList = Atom.action();
 
   dispose() {

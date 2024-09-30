@@ -4,6 +4,7 @@ import 'package:vr_iscool/modules/course_module/external/data/remote/top_course_
 import 'package:vr_iscool/modules/course_module/infra/datasources/course_delete_datasource.dart';
 import 'package:vr_iscool/modules/course_module/infra/datasources/course_get_list_datasource.dart';
 import 'package:vr_iscool/modules/course_module/infra/datasources/course_post_datasource.dart';
+import 'package:vr_iscool/modules/course_module/infra/datasources/course_put_datasource.dart';
 import 'package:vr_iscool/modules/course_module/presenter/atoms/course_atoms.dart';
 import 'package:vr_iscool/modules/course_module/presenter/states/course_states.dart';
 
@@ -12,15 +13,21 @@ class CourseReducer extends Reducer {
   final TopCourseGetListDataSourceRemoteImpl topCourseGetListDataSource;
   final CourseDeleteDataSource courseDeleteDataSource;
   final CoursePostDataSource coursePostDataSource;
+  final CoursePutDataSource coursePutDataSource;
 
   final courseAtoms = Modular.get<CourseAtoms>();
 
-  CourseReducer(this.courseGetListDataSource, this.topCourseGetListDataSource,
-      this.courseDeleteDataSource, this.coursePostDataSource) {
+  CourseReducer(
+      this.courseGetListDataSource,
+      this.topCourseGetListDataSource,
+      this.courseDeleteDataSource,
+      this.coursePostDataSource,
+      this.coursePutDataSource) {
     on(() => [courseAtoms.getCourseList], _getCourseList);
     on(() => [courseAtoms.getTopCourseList], _getTopCourseList);
     on(() => [courseAtoms.deleteCourseAction], _deleteCourse);
     on(() => [courseAtoms.postCurseAction], _postCourse);
+    on(() => [courseAtoms.putCurseAction], _putCurse);
   }
 
   void _getCourseList() async {
@@ -62,6 +69,22 @@ class CourseReducer extends Reducer {
       (success) async {
         courseAtoms.getCourseList();
         courseAtoms.snackText.value = 'Curso cadastrado com sucesso';
+        courseAtoms.showSnackBar.setValue(true);
+      },
+      (error) => {
+        courseAtoms.state.value = CourseErrorState(error.message),
+      },
+    );
+  }
+
+  void _putCurse() async {
+    final res = await coursePutDataSource(courseAtoms.putCurseAction.value);
+
+    courseAtoms.state.value = CourseLoadingState();
+    res.fold(
+      (success) async {
+        courseAtoms.getCourseList();
+        courseAtoms.snackText.value = 'Curso editado com sucesso';
         courseAtoms.showSnackBar.setValue(true);
       },
       (error) => {

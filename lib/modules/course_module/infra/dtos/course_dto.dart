@@ -29,4 +29,12 @@ extension CourseDto on CourseEntity {
       'ementa': ementa,
     };
   }
+
+  Map<String, dynamic> toUpdate() {
+    return {
+      'codigo': id,
+      'descricao': descricao,
+      'ementa': ementa,
+    };
+  }
 }

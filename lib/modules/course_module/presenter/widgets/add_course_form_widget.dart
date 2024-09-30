@@ -6,7 +6,9 @@ import 'package:vr_iscool/modules/course_module/domain/entities/course_entity.da
 import 'package:vr_iscool/modules/course_module/presenter/atoms/course_atoms.dart';
 
 class AddCourseFormWidget extends StatefulWidget {
-  const AddCourseFormWidget({super.key});
+  final bool isEditing;
+  final CourseEntity? entity;
+  const AddCourseFormWidget({super.key, this.isEditing = false, this.entity});
 
   @override
   State<AddCourseFormWidget> createState() => _AddCourseFormWidgetState();
@@ -18,6 +20,15 @@ class _AddCourseFormWidgetState extends State<AddCourseFormWidget> {
   final descriptionController = TextEditingController();
   final ementaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    if (widget.isEditing) {
+      descriptionController.text = widget.entity!.descricao;
+      ementaController.text = widget.entity!.ementa;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +48,7 @@ class _AddCourseFormWidgetState extends State<AddCourseFormWidget> {
               Row(
                 children: [
                   Text(
-                    'Cadastro de curso',
+                    (widget.isEditing) ? 'Editando curso' : 'Cadastro de curso',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -77,13 +88,19 @@ class _AddCourseFormWidgetState extends State<AddCourseFormWidget> {
                   size: const Size(double.maxFinite, 45),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      courseAtoms.postCurseAction.setValue(
-                        CourseEntity(
-                          descricao: descriptionController.text,
-                          ementa: ementaController.text,
-                          totalAlunos: 0,
-                        ),
-                      );
+                      (widget.isEditing)
+                          ? courseAtoms.putCurseAction.setValue(
+                              widget.entity!
+                                ..descricao = descriptionController.text
+                                ..ementa = ementaController.text,
+                            )
+                          : courseAtoms.postCurseAction.setValue(
+                              CourseEntity(
+                                descricao: descriptionController.text,
+                                ementa: ementaController.text,
+                                totalAlunos: 0,
+                              ),
+                            );
                       Modular.to.pop();
                       return;
                     }
@@ -93,7 +110,9 @@ class _AddCourseFormWidgetState extends State<AddCourseFormWidget> {
                       ),
                     );
                   },
-                  title: 'Finalizar Cadastro',
+                  title: (widget.isEditing)
+                      ? 'Finalizar edição'
+                      : 'Finalizar Cadastro',
                   context: context,
                 ),
               ),

@@ -6,12 +6,14 @@ class CourseCardWidget extends StatefulWidget {
   final CourseEntity topCourseEntity;
   final bool enableSlide;
   final void Function()? onTapDelete;
+  final void Function()? onTapEdit;
 
   const CourseCardWidget({
     super.key,
     required this.topCourseEntity,
     this.enableSlide = false,
     this.onTapDelete,
+    this.onTapEdit,
   });
 
   @override
@@ -26,6 +28,15 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
           ? ActionPane(
               motion: const DrawerMotion(),
               children: [
+                SlidableAction(
+                  borderRadius: const BorderRadius.only(),
+                  onPressed: (BuildContext context) {
+                    widget.onTapEdit!();
+                  },
+                  backgroundColor: Theme.of(context).colorScheme.tertiary,
+                  foregroundColor: Theme.of(context).colorScheme.surface,
+                  icon: Icons.edit,
+                ),
                 SlidableAction(
                   borderRadius: const BorderRadius.only(),
                   onPressed: (BuildContext context) {
@@ -70,7 +81,7 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               Text(
-                widget.topCourseEntity.descricao,
+                widget.topCourseEntity.ementa,
               ),
             ],
           ),

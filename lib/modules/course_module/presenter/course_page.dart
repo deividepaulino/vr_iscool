@@ -142,6 +142,18 @@ class _CoursePageState extends State<CoursePage> {
                   (index) => CourseCardWidget(
                     enableSlide: true,
                     topCourseEntity: courses[index],
+                    onTapEdit: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return AddCourseFormWidget(
+                            isEditing: true,
+                            entity: courses[index],
+                          );
+                        },
+                      );
+                    },
                     onTapDelete: () {
                       showDialog(
                           context: context,
