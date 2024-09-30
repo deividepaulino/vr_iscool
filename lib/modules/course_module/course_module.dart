@@ -1,9 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:vr_iscool/modules/course_module/domain/usecases/course_delete_usecase_impl.dart';
 import 'package:vr_iscool/modules/course_module/domain/usecases/course_get_list_usecase_impl.dart';
 import 'package:vr_iscool/modules/course_module/domain/usecases/course_get_usecase_impl.dart';
 import 'package:vr_iscool/modules/course_module/domain/usecases/top_course_get_list_usecase_impl.dart';
+import 'package:vr_iscool/modules/course_module/external/data/remote/course_delete_datasource_remote_impl.dart';
 import 'package:vr_iscool/modules/course_module/external/data/remote/course_get_list_datasource_remote_impl.dart';
 import 'package:vr_iscool/modules/course_module/external/data/remote/top_course_get_list_datasource_remote_impl.dart';
+import 'package:vr_iscool/modules/course_module/infra/repositories/course_delete_repository_impl.dart';
 import 'package:vr_iscool/modules/course_module/infra/repositories/course_get_list_repository_impl.dart';
 import 'package:vr_iscool/modules/course_module/infra/repositories/course_repository_impl.dart';
 import 'package:vr_iscool/modules/course_module/infra/repositories/top_course_get_list_repository_impl.dart';
@@ -23,14 +26,21 @@ class CourseModuleX extends Module {
           export: true,
         ),
         Bind.singleton<CourseReducer>(
-          (i) => CourseReducer(i(), i()),
+          (i) => CourseReducer(
+            i(),
+            i(),
+            i(),
+          ),
           onDispose: (atom) => atom.dispose(),
           export: true,
         ),
         Bind((i) => CourseGetListDataSourceRemoteImpl(i()), export: true),
+        Bind((i) => CourseDeleteDataSourceRemoteImpl(i()), export: true),
         Bind((i) => CourseGetRepositoryImpl(i()), export: true),
+        Bind((i) => CourseDeleteRepositoryImpl(i()), export: true),
         Bind((i) => CourseGetListRepositoryImpl(i()), export: true),
         Bind((i) => CourseGetUsecaseImpl(i()), export: true),
+        Bind((i) => CourseDeleteUsecaseImpl(i()), export: true),
         Bind((i) => CourseGetListUsecaseImpl(i()), export: true),
         Bind((i) => TopCourseGetListDataSourceRemoteImpl(i()), export: true),
         Bind((i) => TopCourseGetListRepositoryImpl(i()), export: true),

@@ -1,6 +1,7 @@
 import 'package:asp/asp.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:vr_iscool/modules/course_module/external/data/remote/top_course_get_list_datasource_remote_impl.dart';
+import 'package:vr_iscool/modules/course_module/infra/datasources/course_delete_datasource.dart';
 import 'package:vr_iscool/modules/course_module/infra/datasources/course_get_list_datasource.dart';
 import 'package:vr_iscool/modules/course_module/presenter/atoms/course_atoms.dart';
 import 'package:vr_iscool/modules/course_module/presenter/states/course_states.dart';
@@ -8,12 +9,15 @@ import 'package:vr_iscool/modules/course_module/presenter/states/course_states.d
 class CourseReducer extends Reducer {
   final CourseGetListDataSource courseGetListDataSource;
   final TopCourseGetListDataSourceRemoteImpl topCourseGetListDataSource;
+  final CourseDeleteDataSource courseDeleteDataSource;
 
-  final indexAtoms = Modular.get<CourseAtoms>();
+  final courseAtoms = Modular.get<CourseAtoms>();
 
-  CourseReducer(this.courseGetListDataSource, this.topCourseGetListDataSource) {
-    on(() => [indexAtoms.getCourseList], _getCourseList);
-    on(() => [indexAtoms.getTopCourseList], _getTopCourseList);
+  CourseReducer(this.courseGetListDataSource, this.topCourseGetListDataSource,
+      this.courseDeleteDataSource) {
+    on(() => [courseAtoms.getCourseList], _getCourseList);
+    on(() => [courseAtoms.getTopCourseList], _getTopCourseList);
+    on(() => [courseAtoms.deleteCourseAction], _deleteCourse);
   }
 
   void _getCourseList() async {
@@ -22,10 +26,10 @@ class CourseReducer extends Reducer {
     res.fold(
       (success) async {
         await Future.delayed(const Duration(seconds: 2));
-        indexAtoms.state.value = CourseSuccessState(success);
+        courseAtoms.state.value = CourseSuccessState(success);
       },
       (error) => {
-        indexAtoms.state.value = CourseErrorState(error.message),
+        courseAtoms.state.value = CourseErrorState(error.message),
       },
     );
   }
@@ -36,10 +40,24 @@ class CourseReducer extends Reducer {
     res.fold(
       (success) async {
         await Future.delayed(const Duration(seconds: 2));
-        indexAtoms.state.value = CourseSuccessState(success);
+        courseAtoms.state.value = CourseSuccessState(success);
       },
       (error) => {
-        indexAtoms.state.value = CourseErrorState(error.message),
+        courseAtoms.state.value = CourseErrorState(error.message),
+      },
+    );
+  }
+
+  void _deleteCourse() async {
+    final res =
+        await courseDeleteDataSource(courseAtoms.deleteCourseAction.value);
+
+    res.fold(
+      (success) async {
+        courseAtoms.getCourseList();
+      },
+      (error) => {
+        courseAtoms.state.value = CourseErrorState(error.message),
       },
     );
   }

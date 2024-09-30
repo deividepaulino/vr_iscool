@@ -4,11 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_fail_page.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_loading_page.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
+import 'package:vr_iscool/core/shared/presenter/widgets/course_card_widget/course_card_widget.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/search_bar/search_bar_widget.dart';
 import 'package:vr_iscool/modules/course_module/domain/entities/course_entity.dart';
 import 'package:vr_iscool/modules/course_module/presenter/atoms/course_atoms.dart';
 import 'package:vr_iscool/modules/course_module/presenter/states/course_states.dart';
-import 'package:vr_iscool/modules/course_module/presenter/widgets/course_card_widget.dart';
 
 class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
@@ -107,7 +107,11 @@ class _CoursePageState extends State<CoursePage> {
                 children: List.generate(
                   courses.length,
                   (index) => CourseCardWidget(
-                    courseEntity: courses[index],
+                    enableSlide: true,
+                    topCourseEntity: courses[index],
+                    onTapDelete: () {
+                      courseAtoms.deleteCourseAction.setValue(courses[index]);
+                    },
                   ),
                 ),
               ),
