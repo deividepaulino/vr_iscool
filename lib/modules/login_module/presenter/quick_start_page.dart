@@ -20,7 +20,7 @@ class _QuickStartPageState extends State<QuickStartPage> {
             PageViewModel(
               title: "Seja bem vindo",
               body:
-                  "O VR Is Cool é um app muito maneiro onde você pode gerenciar sua escola",
+                  "O VR Is Cool é um app muito maneiro onde você pode gerenciar sua escola!",
               image: Lottie.asset(
                 'assets/animations/floating_balloons.json',
               ),
@@ -42,7 +42,7 @@ class _QuickStartPageState extends State<QuickStartPage> {
             PageViewModel(
               title: "Controle os estudantes",
               body:
-                  "Sempre que precisar, consulte a lista ou faça uma nova matrícula",
+                  "Sempre que precisar, consulte a lista ou faça uma nova matrícula.",
               image: Lottie.asset('assets/animations/student.json'),
               decoration: PageDecoration(
                 pageColor: Theme.of(context).colorScheme.surface,
