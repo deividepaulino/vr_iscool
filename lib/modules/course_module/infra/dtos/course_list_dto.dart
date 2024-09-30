@@ -11,7 +11,7 @@ extension CourseListDto on List<CourseEntity> {
           CourseEntity(
             id: item['codigo'] ?? -1,
             descricao: item['descricao'] ?? '',
-            ementa: '',
+            ementa: item['ementa'] ?? 'Sem descrição',
             totalAlunos: item['totalAlunos'] ?? -1,
           ),
         );

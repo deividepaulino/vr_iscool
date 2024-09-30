@@ -69,7 +69,9 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
                 widget.topCourseEntity.descricao,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              const Text('Descrição do curso'),
+              Text(
+                widget.topCourseEntity.descricao,
+              ),
             ],
           ),
           const Spacer(),

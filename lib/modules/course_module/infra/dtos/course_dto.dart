@@ -7,7 +7,7 @@ extension CourseDto on CourseEntity {
     return CourseEntity(
       id: json['codigo'] ?? -1,
       descricao: json['descricao'] ?? '',
-      ementa: '',
+      ementa: json['ementa'] ?? 'Sem descrição',
       totalAlunos: json['totalAlunos'] ?? -1,
     );
   }
@@ -18,7 +18,7 @@ extension CourseDto on CourseEntity {
     return CourseEntity(
       id: json['codigo'] ?? -1,
       descricao: json['descricao'] ?? '',
-      ementa: '',
+      ementa: json['ementa'] ?? 'Sem descrição',
       totalAlunos: json['totalAlunos'] ?? -1,
     );
   }
