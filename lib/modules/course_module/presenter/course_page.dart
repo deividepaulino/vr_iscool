@@ -5,6 +5,7 @@ import 'package:vr_iscool/core/shared/presenter/pages/generic_fail_page.dart';
 import 'package:vr_iscool/core/shared/presenter/pages/generic_loading_page.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/bottom_navigator_bar/bottom_nav_bar_widget.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/course_card_widget/course_card_widget.dart';
+import 'package:vr_iscool/core/shared/presenter/widgets/modals/confirm_modal/confirm_modal_widget.dart';
 import 'package:vr_iscool/core/shared/presenter/widgets/search_bar/search_bar_widget.dart';
 import 'package:vr_iscool/modules/course_module/domain/entities/course_entity.dart';
 import 'package:vr_iscool/modules/course_module/presenter/atoms/course_atoms.dart';
@@ -133,7 +134,20 @@ class _CoursePageState extends State<CoursePage> {
                     enableSlide: true,
                     topCourseEntity: courses[index],
                     onTapDelete: () {
-                      courseAtoms.deleteCourseAction.setValue(courses[index]);
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return ConfirmModalWidget(
+                              title: 'Remover curso',
+                              content:
+                                  'Tem certeza que deseja remover este curso?',
+                              leftAction: () {
+                                courseAtoms.deleteCourseAction
+                                    .setValue(courses[index]);
+                              },
+                              rightAction: () {},
+                            );
+                          });
                     },
                   ),
                 ),
