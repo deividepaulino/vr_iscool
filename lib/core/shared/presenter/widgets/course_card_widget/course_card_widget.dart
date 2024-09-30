@@ -27,16 +27,6 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
               motion: const DrawerMotion(),
               children: [
                 SlidableAction(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(6),
-                    bottomLeft: Radius.circular(6),
-                  ),
-                  onPressed: (BuildContext context) {},
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  icon: Icons.check,
-                ),
-                SlidableAction(
                   borderRadius: const BorderRadius.only(),
                   onPressed: (BuildContext context) {
                     widget.onTapDelete!();
@@ -83,18 +73,22 @@ class _CourseCardWidgetState extends State<CourseCardWidget> {
             ],
           ),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Text(
-                  widget.topCourseEntity.totalAlunos.toString(),
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                Text('Alunos', style: Theme.of(context).textTheme.displaySmall),
-              ],
+          Visibility(
+            visible: widget.topCourseEntity.totalAlunos >= 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    widget.topCourseEntity.totalAlunos.toString(),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  Text('Alunos',
+                      style: Theme.of(context).textTheme.displaySmall),
+                ],
+              ),
             ),
           ),
         ],
